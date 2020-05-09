@@ -1,2 +1,4 @@
-# RedBlueSiteLocations
-Red and Blue Site Locations Combined
+## Welcome to Locations of Old Sites
+
+
+[Click here for site locations map](https://allankavuma.github.io/RedBlueSiteLocations/)
