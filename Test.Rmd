@@ -21,57 +21,6 @@ library(dplyr) ## For data manipulation
 ```{r LoadData, echo=FALSE, message=FALSE, warning=FALSE}
 ## Read the data
 ## Read the site data
-sitedata <- read.xlsx("RegionalSupervisorsSiteAllocation_2.xlsx", sheetName = "site list")
-```
-
-
-```{r CleanData, echo=FALSE, message=FALSE, warning=FALSE}
-## Clean the data
-## Select the rows for the Latitudes, Longitudes and Region
-siteLocations <- sitedata[,c("Site.name", "Site.ID", 
-                             "Latitude", "Longitude", "proposed.SMPMS.3")]
-## Remove missing values data
-#siteLocations <- na.omit(siteLocations)
-# Check if all missing values are removed
-#table(is.na(siteLocations))
-# Check the structure of the data frame
-#str(siteLocations)
-# Change Name variable from Factor to character type
-siteLocations$Site.name <- as.character(siteLocations$Site.name)
-siteLocations$proposed.SMPMS.3 <- as.factor(siteLocations$proposed.SMPMS.3)
-## Remove wrong value of Mutara_House
-#siteLocations <- siteLocations[!(siteLocations$ATC.Site.Name == c("Mutara_House")),]
-```
-```{r colourDifferentiation, echo = FALSE, message=FALSE, warning=FALSE}
-# Setting your own colors manually:
-pal <- colorFactor(
-  palette = c('red', 'blue', 'green'),
-  domain = siteLocations$proposed.SMPMS.3
-)
-
-pal <- colorFactor(
-  palette = 'Dark2',
-  domain = siteLocations$proposed.SMPMS.3)
-```
-
-```{r PlotMap, echo = FALSE, message=FALSE, warning=FALSE}
-## Plot the map
-## Plot map according to the regions of the sites
-leaflet(siteLocations) %>% addTiles() %>% addMarkers(group = siteLocations$proposed.SMPMS.3, lat = siteLocations$Latitude, lng = siteLocations$Longitude, popup = paste("SiteName:" = siteLocations$Site.name, "</br>",
-                                                                                                                              "SiteID:" = siteLocations$Site.ID  ), clusterOptions = markerClusterOptions())
-
-#leaflet(siteLocations) %>% addTiles() %>% addMarkers(lat = siteLocations$Latitude, lng = siteLocations$Longitude) %>% addPopups(siteLocations$Site.name,siteLocations$Site.ID, options = popupOptions(closeButton = FALSE))
-leaflet(siteLocations) %>%
-  addTiles() %>%
-  addCircles(lat = siteLocations$Latitude, lng = siteLocations$Longitude, weight = 1, 
-              popup = paste("SiteName:" = siteLocations$Site.name, "</br>",                                                      "SiteID:" = siteLocations$Site.ID  ), 
-             color = ~pal(proposed.SMPMS.3), radius = 2000) #%>% addPopups(siteLocations$Site.name,siteLocations$Site.ID, options = popupOptions(closeButton = FALSE))
-```
-
-
-```{r Iengineering, echo=FALSE, message=FALSE, warning=FALSE}
-## Read the data
-## Read the site data
 sitedata <- read.xlsx("RegionalSupervisorsSiteAllocation_2test.xlsx", sheetName = "site list")
 
 ## Clean the data
