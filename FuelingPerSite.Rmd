@@ -1,0 +1,73 @@
+---
+title: "Average Fuel Consumed Per Site Since Jan - April 2020"
+author: "ATC Red"
+date: "17 May 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r LoadLibraries, echo=FALSE, message=FALSE, warning=FALSE}
+## Import Libraries
+library(leaflet) ## Creating leaftlet map
+library(xlsx) ## For reading excel file
+library(dplyr) ## For data manipulation
+```
+
+
+```{r LoadData, echo=FALSE, message=FALSE, warning=FALSE}
+## Read the data
+## Read the site data
+sitedata <- read.xlsx("FuelingPerSite.xlsx", sheetName = "Sheet1")
+```
+
+
+
+```{r Iengineering, echo=FALSE, message=FALSE, warning=FALSE}
+## Read the data
+## Read the site data
+sitedata <- read.xlsx("FuelingPerSite.xlsx", sheetName = "Sheet1")
+
+## Clean the data
+## Select the rows for the Latitudes, Longitudes and Region
+siteLocations <- sitedata[,c("ATC.Site.Name", "ATC.Number", 
+                             "Latitude", "Longitude", "SMPMS.Vendor", "AVERAGE.FUEL.CONSUMED.PER.SITE.L")]
+## Remove missing values data
+#siteLocations <- na.omit(siteLocations)
+# Check if all missing values are removed
+#table(is.na(siteLocations))
+# Check the structure of the data frame
+#str(siteLocations)
+# Change Name variable from Factor to character type
+siteLocations$ATC.Site.Name <- as.character(siteLocations$ATC.Site.Name)
+siteLocations$SMPMS.Vendor <- as.factor(siteLocations$SMPMS.Vendor)
+siteLocations$radius <- siteLocations$AVERAGE.FUEL.CONSUMED.PER.SITE.L * 10
+## Remove wrong value of Mutara_House
+#siteLocations <- siteLocations[!(siteLocations$ATC.ATC.Site.Name == c("Mutara_House")),]
+
+# Setting your own colors manually:
+pal <- colorFactor(
+  palette = c('red', 'blue'),
+  domain = siteLocations$SMPMS.Vendor
+)
+
+pal <- colorFactor(
+  palette = 'Dark2',
+  domain = siteLocations$SMPMS.Vendor)
+
+## Plot the map
+## Plot map according to the regions of the sites
+#leaflet(siteLocations) %>% addTiles() %>% addMarkers(group = siteLocations$SMPMS.Vendor, lat = siteLocations$Latitude, lng = siteLocations$Longitude, popup = paste("SiteName:" = siteLocations$ATC.Site.Name, "</br>",
+                                                                                                  #                            "SiteID:" = siteLocations$Site.ID  ), clusterOptions = #markerClusterOptions())
+
+#leaflet(siteLocations) %>% addTiles() %>% addMarkers(lat = siteLocations$Latitude, lng = siteLocations$Longitude) %>% addPopups(siteLocations$ATC.Site.Name,siteLocations$Site.ID, options = popupOptions(closeButton = FALSE))
+leaflet(siteLocations) %>%
+  addTiles() %>%
+  addCircles(lat = siteLocations$Latitude, lng = siteLocations$Longitude, weight = 1, 
+              popup = paste("SiteName:" = siteLocations$ATC.Site.Name, "</br>",                                                      "SiteID:" = siteLocations$AVERAGE.FUEL.CONSUMED.PER.SITE.L ), 
+             color = ~pal(SMPMS.Vendor), radius = ~radius) #%>% addPopups(siteLocations$ATC.Site.Name,siteLocations$Site.ID, options = popupOptions(closeButton = FALSE))
+```
+
