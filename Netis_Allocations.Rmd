@@ -43,7 +43,7 @@ siteLocations$proposed.SMPMS.3 <- as.factor(siteLocations$Allocation2)
 
 # Setting your own colors manually:
 pal <- colorFactor(
-  palette = c('red', 'blue', 'green'),#, 'green', "yellow", "orange", "black", "purple", "pink", "brown", "grey"),
+  palette = c('brown','dark green', 'pink','yellow','green', 'blue', 'red'),#, 'green', "yellow", "orange", "black", "purple", "pink", "brown", "grey"),
   domain = siteLocations$Allocation2
 )
 
@@ -79,7 +79,7 @@ leaflet(siteLocations) %>%
 ### *Note: Different colour per supervisor*  
 ```{r testing, fig.width=12, fig.height=8, echo=FALSE, message=FALSE, warning=FALSE}
 pal <- colorFactor(
-  palette = c('red', 'blue', 'green'),#, 'green', "yellow", "orange", "black", "purple", "pink", "brown", "grey"),
+  palette = c('brown','dark green', 'pink','yellow','green', 'blue', 'red'),#, 'green', "yellow", "orange", "black", "purple", "pink", "brown", "grey"),
   domain = siteLocations$Allocation2
 )
 leaflet() %>%
