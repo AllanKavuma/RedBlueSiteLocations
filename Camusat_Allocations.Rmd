@@ -78,6 +78,7 @@ leaflet(siteLocations) %>%
 ### *Click circle to view details of Site Name, Site ID and Supervisor*  
 #### *Note: Different colour per supervisor*  
 ```{r testing, fig.width=12, fig.height=8, echo=FALSE, message=FALSE, warning=FALSE}
+# fig.width=12, fig.height=8
 pal <- colorFactor(
   palette = c('brown','dark green', 'pink','yellow','green', 'blue', 'red'),#, 'green', "yellow", "orange", "black", "purple", "pink", "brown", "grey"),
   domain = siteLocations$Allocation2
