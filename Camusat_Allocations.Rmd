@@ -70,7 +70,7 @@ leaflet(siteLocations) %>%
   addTiles() %>%
   addCircles(lat = siteLocations$Latitude, lng = siteLocations$Longitude, weight = 1, 
               popup = paste("SiteName:" = siteLocations$Site.name, "</br>",                                                      "SiteID:" = siteLocations$Site.ID  ), 
-             color = ~pal(Allocation2), radius = 2000) #%>% addPopups(siteLocations$Site.name,siteLocations$Site.ID, options = popupOptions(closeButton = FALSE))
+             color = ~pal(Allocation2), radius = 20000) #%>% addPopups(siteLocations$Site.name,siteLocations$Site.ID, options = popupOptions(closeButton = FALSE))
 ```
 
 # Pins for sites  

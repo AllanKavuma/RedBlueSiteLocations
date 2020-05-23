@@ -44,7 +44,7 @@ siteLocations$proposed.SMPMS.3 <- as.factor(siteLocations$Allocation2)
 
 # Setting your own colors manually:
 pal <- colorFactor(
-  palette = c('green', 'blue', 'pink', 'red','black'),#, 'green', "yellow", "orange", "black", "purple", "pink", "brown", "grey"),
+  palette = c('green', 'blue', 'purple', 'red','black'),#, 'green', "yellow", "orange", "black", "purple", "pink", "brown", "grey"),
   domain = siteLocations$Allocation2
 )
 
@@ -70,7 +70,7 @@ leaflet(siteLocations) %>%
   addTiles() %>%
   addCircles(lat = siteLocations$Latitude, lng = siteLocations$Longitude, weight = 1, 
               popup = paste("SiteName:" = siteLocations$Site.name, "</br>",                                                      "SiteID:" = siteLocations$Site.ID  ), 
-             color = ~pal(Allocation2), radius = 2000) #%>% addPopups(siteLocations$Site.name,siteLocations$Site.ID, options = popupOptions(closeButton = FALSE))
+             color = ~pal(Allocation2), radius = 20000) #%>% addPopups(siteLocations$Site.name,siteLocations$Site.ID, options = popupOptions(closeButton = FALSE))
 ```
 
 # Pins for sites  
@@ -80,7 +80,7 @@ leaflet(siteLocations) %>%
 ```{r testing, fig.width=12, fig.height=8, echo=FALSE, message=FALSE, warning=FALSE}
 # fig.width=12, fig.height=8
 pal <- colorFactor(
-  palette = c('green', 'blue', 'pink', 'red','black'),#, 'green', "yellow", "orange", "black", "purple", "pink", "brown", "grey"),
+  palette = c('green', 'blue', 'purple', 'red','black'),#, 'green', "yellow", "orange", "black", "purple", "pink", "brown", "grey"),
   domain = siteLocations$Allocation2
 )
 leaflet() %>%
