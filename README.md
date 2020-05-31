@@ -10,3 +10,5 @@
 [Click here for Regional Supervisor Site Allocation in Netis Region](https://allankavuma.github.io/RedBlueSiteLocations/Netis_Allocations)
 
 [Click here for Regional Supervisor Site Allocation in IEngineering Region](https://allankavuma.github.io/RedBlueSiteLocations/Iengineering_Allocations)
+
+[Click here for Handover Teams](https://allankavuma.github.io/RedBlueSiteLocations/HOTO_Teams)
