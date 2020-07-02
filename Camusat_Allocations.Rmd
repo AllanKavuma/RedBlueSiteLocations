@@ -44,7 +44,7 @@ siteLocations$proposed.SMPMS.3 <- as.factor(siteLocations$Allocation2)
 
 # Setting your own colors manually:
 pal <- colorFactor(
-  palette = c('brown','dark green', 'pink','yellow','green', 'blue', 'red'),#, 'green', "yellow", "orange", "black", "purple", "pink", "brown", "grey"),
+  palette = c('purple','dark green', 'pink','yellow','green', 'blue', 'red'),#, 'green', "yellow", "orange", "black", "purple", "pink", "brown", "grey"),
   domain = siteLocations$Allocation2
 )
 
